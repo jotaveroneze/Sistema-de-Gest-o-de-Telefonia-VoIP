@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+<link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%233b5bdb' d='M3.654 1.328a.678.678 0 0 1 .737-.143l2.522 1.01c.329.132.445.507.261.817L6.29 4.561a.678.678 0 0 0 .145.745l3.006 3.006a.678.678 0 0 0 .745.145l1.55-.883c.31-.184.685-.068.817.261l1.01 2.522a.678.678 0 0 1-.143.737l-1.2 1.2c-.86.86-2.133 1.09-3.237.56a18.6 18.6 0 0 1-7.588-7.588c-.53-1.104-.3-2.377.56-3.237l1.2-1.2z'/%3E%3C/svg%3E">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+  <!-- CSS Original -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body class="bg-light">
+
+  <!-- SIDEBAR -->
+  {% include "sidebar.html" %}
+
+  <!-- HAMBURGER -->
+  <button class="btn btn-primary d-lg-none position-fixed top-0 start-0 m-3" id="sidebarToggle">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <!-- CONTEÚDO -->
+  <div class="content container-fluid py-4">
+
+  <!-- TÍTULO -->
+  <div class="mb-4">
+    <h1 class="fw-bold mb-1">Gerenciamento de Telefones</h1>
+  </div>
+
+  <div class="row g-4">
+
+
+<!-- TELEFONES -->
+<div class="col-12 col-lg-4">
+  <div class="card dashboard-card h-100">
+    <div class="card-body text-center position-relative">
+
+      <div class="icon-box bg-primary">
+        <i class="bi bi-telephone"></i>
+      </div>
+
+      <h5 class="mt-3">Telefones</h5>
+
+
+    <!-- MÉTRICAS -->
+    <div class="row text-center mt-2">
+
+          <!-- TELEFONES ENTREGUES -->
+          <div class="col-6 border-end">
+            <small class="text-muted">Entregues</small>
+            <div class="metric-sm text-success"
+                 id="telefonesEntregues"
+                 style="cursor: pointer;"
+                 onclick="abrirAbaTelefone('#tab-entregues')"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="top"
+                 title="Ver telefones entregues">
+              0
+            </div>
+          </div>
+
+          <!-- TELEFONES NÃO ENTREGUES -->
+          <div class="col-6">
+            <small class="text-muted">Não entregues</small>
+            <div class="metric-sm text-danger"
+                 id="telefonesNaoEntregues"
+                 style="cursor: pointer;"
+                 onclick="abrirAbaTelefone('#tab-nao-entregues')"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="top"
+                 title="Ver telefones não entregues">
+              0
+            </div>
+          </div>
+
+        </div>
+
+
+      <!-- AÇÕES -->
+      <div class="action-buttons mt-3 d-flex justify-content-center gap-2">
+        <a href="/telefone"
+           class="btn btn-outline-secondary btn-sm"
+           data-bs-toggle="tooltip"
+           data-bs-placement="top"
+           title="Visualizar telefones">
+          <i class="bi bi-eye"></i>
+        </a>
+
+        <button class="btn btn-primary btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#modalAdicionarTelefone"
+                data-bs-placement="top"
+                title="Adicionar telefone">
+          <i class="bi bi-plus-lg"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <!-- RAMAIS -->
+    <div class="col-md-4">
+      <div class="card dashboard-card h-100">
+        <div class="card-body text-center position-relative">
+
+          <div class="icon-box bg-success">
+            <i class="bi bi-diagram-3"></i>
+          </div>
+
+          <h5 class="mt-3 mb-3">Ramais</h5>
+
+        <div class="row text-center">
+          <div class="col-6 border-end">
+            <small class="text-muted">Vago</small>
+            <div class="metric-sm text-success"
+                 id="ramalVago"
+                 style="cursor: pointer;"
+                 onclick="abrirAbaRamal('#tab-vago')"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="top"
+                 title="Ver ramais vagos">
+              {{ ramal_vago }}
+            </div>
+          </div>
+
+          <div class="col-6">
+            <small class="text-muted">Em uso</small>
+            <div class="metric-sm text-danger"
+                 id="ramalNaoVago"
+                 style="cursor: pointer;"
+                 onclick="abrirAbaRamal('#tab-em-uso')"
+                 data-bs-toggle="tooltip"
+                 data-bs-placement="top"
+                 title="Ver ramais em uso">
+              {{ ramal_nao_vago }}
+            </div>
+          </div>
+        </div>
+
+
+          <!-- AÇÕES -->
+        <div class="action-buttons d-flex justify-content-center flex-wrap gap-2 mt-3">
+          <a href="/ramais"
+             class="btn btn-outline-secondary btn-sm"
+             data-bs-toggle="tooltip"
+             data-bs-placement="top"
+             title="Visualizar ramais">
+            <i class="bi bi-eye"></i>
+          </a>
+
+          <button class="btn btn-success btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalAdicionarRamal"
+                  data-bs-placement="top"
+                  title="Adicionar ramal">
+            <i class="bi bi-plus-lg"></i>
+          </button>
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- PESSOAS -->
+    <div class="col-md-4">
+      <div class="card dashboard-card h-100">
+        <div class="card-body text-center position-relative">
+
+          <div class="icon-box bg-warning">
+            <i class="bi bi-people"></i>
+          </div>
+
+          <h5 class="mt-3">Pessoas</h5>
+          <div class="metric" id="totalPessoa">0</div>
+
+          <!-- AÇÕES -->
+        <div class="action-buttons">
+          <a href="/pessoas"
+             class="btn btn-outline-secondary btn-sm"
+             data-bs-toggle="tooltip"
+             data-bs-placement="top"
+             title="Visualizar pessoas">
+            <i class="bi bi-eye"></i>
+          </a>
+
+          <button class="btn btn-warning btn-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalAdicionarPessoa"
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title="Adicionar pessoa">
+            <i class="bi bi-plus-lg"></i>
+          </button>
+        </div>
+
+
+        </div>
+      </div>
+    </div>
+
+<div class="row g-4 mt-2">
+
+  <!-- GRÁFICO (8 colunas) -->
+  <div class="col-12 col-lg-8">
+    <div class="card dashboard-card h-100">
+      <div class="card-body grafico-wrapper">
+        <h5 class="mb-3">Situação dos Telefones</h5>
+        <canvas id="graficoTelefones"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTA DE PENDÊNCIAS (4 colunas) -->
+<div class="col-12 col-sm-6 col-lg-4">
+  <div class="card dashboard-card h-100">
+    <div class="card-body d-flex flex-column"> <!-- Adicionado flex-column para organizar o conteúdo -->
+
+      <div class="icon-box bg-danger mb-3">
+        <i class="bi bi-exclamation-triangle"></i>
+      </div>
+
+      <h5 class="mt-2">Pendências</h5>
+
+      <ul class="list-group list-group-flush text-start mt-3" id="listaPendencias">
+        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+          <span class="">Alteração de ramal pendente</span>
+          <span id="span-ramal-pendente" class="badge bg-danger text-white rounded-pill p-2 px-3 fs-6">0</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+          <span class="">Alteração de pessoa pendente</span>
+          <span id="span-pessoa-pendente" class="badge bg-primary rounded-pill p-2 px-3 fs-6">0</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+          <span class="">Alteração de número de grupo pendente</span>
+          <span id="span-telefones-defeito" class="badge bg-warning text-dark rounded-pill p-2 px-3 fs-6">0</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+          <span class="">Outras pendências</span>
+          <span id="span-outras-pendencias" class="badge bg-secondary rounded-pill p-2 px-3 fs-6">0</span>
+        </li>
+      </ul>
+
+      <!-- Novos botões de ação -->
+      <div class="mt-auto pt-3">
+        <div class="d-grid gap-2">
+          <button type="button" class="btn btn-danger d-flex align-items-center justify-content-center" onclick="abrirModalNovaPendencia()">
+            Nova Pendência
+          </button>
+
+          <div class="text-center">
+            <a href="/pendencias" class="btn btn-outline-secondary btn-sm w-100">
+              Ver detalhes
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    {% include "modais/modaispessoa.html" %}
+    {% include "modais/modaisempresa.html" %}
+    {% include "modais/modaistelefone.html" %}
+    {% include "modais/modaislugartelefone.html" %}
+    {% include "modais/modaisdepartamento.html" %}
+    {% include "modais/modaissecretaria.html" %}
+    {% include "modais/modaismodelo.html" %}
+    {% include "modais/modaistelefoneramal.html" %}
+    {% include "modais/modaisramal.html" %}
+    {% include "modais/modaistronco.html" %}
+    {% include "modais/modaisoperadora.html" %}
+    {% include "modais/modaisdepartamento.html" %}
+    {% include "modais/modaissecretaria.html" %}
+    {% include "modais/modaispendencia.html" %}
+
+  <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/grafico.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pessoa.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/modais/modaisdepartamentoeditar.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/modais/modaisempresaeditar.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/modais/modaismodelo.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pendencias.js') }}"></script>
+</body>
+</html>

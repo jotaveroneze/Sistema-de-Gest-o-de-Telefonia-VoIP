@@ -1,0 +1,99 @@
+<!-- Modal Adicionar -->
+<div class="modal fade" id="modalAdicionarDepartamento" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Departamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formAdicionar">
+          <div class="mb-3">
+
+            <label class="form-label">Secretaria:</label>
+            <!-- Campo de pesquisa -->
+            <input type="text" id="searchSecretaria" class="form-control mb-2" placeholder="Pesquisar secretaria...">
+        <div class="tabela-fixa">
+            <!-- Tabela de secretarias -->
+            <table class="table table-bordered table-sm" id="tabelaSecretaria">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Secretaria</th>
+                    <th>Nome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Linhas serão inseridas via JavaScript -->
+              </tbody>
+            </table>
+        </div>
+            <label class="form-label">Departamento:</label>
+            <input type="text" id="txtAddDepartamento" class="form-control mb-2" placeholder="Insira um Departamento">
+
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarNovoDepartamento()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar Departamento -->
+<div class="modal fade" id="modalEditarDepartamento" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Departamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formEditar">
+
+          <input type="hidden" id="editIdDepartamento">
+
+          <label class="form-label">Secretaria:</label>
+
+          <!-- Campo de pesquisa -->
+          <input type="text" id="searchSecretariaEditar" class="form-control mb-2" placeholder="Pesquisar secretaria...">
+        <div class="tabela-fixa">
+          <!-- Tabela de secretarias -->
+          <table class="table table-bordered table-sm" id="tabelaSecretariaEditar">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Secretaria</th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- preenchido por JS -->
+            </tbody>
+          </table>
+        </div>
+          <label class="form-label">Departamento:</label>
+          <input type="text" id="editNomeDepartamento" class="form-control mb-2" placeholder="Insira um Departamento" required>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoDepartamento()">Salvar alterações</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  {% include "modais/modaisglobal.html" %}
+  <script src="{{ url_for('static', filename='js/modais/modaisdepartamento.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/modais/modaisdepartamentoeditar.js') }}"></script>

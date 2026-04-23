@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Departamentos</title>
+<link rel="icon" type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23007bff' d='M3.654 1.328a.678.678 0 0 1 .737-.143l2.522 1.01c.329.132.445.507.261.817L6.29 4.561a.678.678 0 0 0 .145.745l3.006 3.006a.678.678 0 0 0 .745.145l1.55-.883c.31-.184.685-.068.817.261l1.01 2.522a.678.678 0 0 1-.143.737l-1.2 1.2c-.86.86-2.133 1.09-3.237.56a18.6 18.6 0 0 1-7.588-7.588c-.53-1.104-.3-2.377.56-3.237l1.2-1.2z'/%3E%3C/svg%3E">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  {% include "sidebar.html" %}
+
+  <div class="content-area">
+
+    <!-- Formulário de busca -->
+    <form class="row g-2 align-items-center mb-4">
+      <div class="col-md-4">
+        <input type="search" id="searchDepartamento" class="form-control" placeholder="Buscar departamento..." />
+
+      </div>
+
+      <div class="col-md-8">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdicionarDepartamento">
+          <i class="fa-solid fa-user-plus"></i> Adicionar departamento
+        </button>
+      </div>
+    </form>
+
+    <!-- Tabela -->
+       <div class="card shadow-sm border-0">
+      <div class="card-body">
+
+        <!-- Cabeçalho -->
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+          <h5 class="mb-0 fw-semibold">
+            <i class="bi bi-diagram-3 me-2"></i>
+            Lista de Departamentos
+          </h5>
+
+          <span class="badge bg-secondary" id="contadorDepartamentos">
+            0 registros
+          </span>
+        </div>
+
+        <!-- Loading -->
+        <div id="loadingTabela" class="text-center my-4 d-none">
+          <div class="spinner-border text-primary" role="status"></div>
+          <div class="mt-2">Carregando departamentos...</div>
+        </div>
+
+        <!-- Tabela -->
+        <div class="table-responsive tabela-container">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light text-center">
+              <tr>
+                <th style="width: 45%;">Secretaria</th>
+                <th style="width: 40%;">Departamento</th>
+                <th style="width: 15%;">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaDepartamento"></tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+  <!-- MODAIS -->
+{% include "modais/modaisdepartamento.html" %}
+{% include "modais/modaissecretaria.html" %}
+
+  <!-- Bootstrap JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/departamento.js') }}"></script>
+
+</body>
+</html>
+
+

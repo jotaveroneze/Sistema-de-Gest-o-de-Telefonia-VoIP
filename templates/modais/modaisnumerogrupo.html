@@ -1,0 +1,178 @@
+<!-- Modal Adicionar -->
+<div class="modal fade" id="modalAdicionarNumeroGrupo" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Número Virtual</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formAdicionar">
+          <div class="mb-3">
+            <label class="form-label">Número</label>
+            <input
+              type="text"
+              id="txtAddNumeroGrupo"
+              class="form-control"
+              placeholder="Insira o número virtual"
+              required
+            >
+          </div>
+
+            <div class="mb-3">
+
+            <label class="form-label">Tronco:</label>
+              <div>
+                <input type="search" id="searchTronco" class="form-control" placeholder="Buscar Tronco..." />
+
+              </div>
+        <div class="tabela-fixa">
+                  <!-- Tabela de tronco -->
+            <table class="table table-bordered table-sm" id="tabelaTronco-NumeroGrupo">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Número Chave</th>
+                    <th>Ramal Inicial</th>
+                    <th>Ramal Final</th>
+                    <th>Operadora</th>
+                    </tr>
+                    </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+
+            <label class="form-label">Departamento:</label>
+            <!-- Campo de pesquisa -->
+            <input type="text" id="searchDepartamento" class="form-control mb-2" placeholder="Pesquisar departamento...">
+        <div class="tabela-fixa">
+              <!-- Tabela de departamentos -->
+            <table class="table table-bordered table-sm" id="tabelaDepartamentos">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Secretaria</th>
+                    <th>Nome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Linhas serão inseridas via JavaScript -->
+              </tbody>
+            </table>
+        </div>
+
+                  <!-- Tabela de departamentos -->
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <input
+              type="text"
+              id="txtAddDescricaoNumeroGrupo"
+              class="form-control"
+              placeholder="Insira a descrição"
+            >
+          </div>
+
+               <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" id="addGravadoNumeroGrupo">
+            <label class="form-check-label" for="addGravadoNumeroGrupo">
+            Gravação habilitada
+            </label>
+        </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarNovoNumeroGrupo()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Modal Editar -->
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEditarNumeroGrupo" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Número Virtual</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formEditarNumeroGrupo">
+          <input type="hidden" id="editIdNumeroGrupo">
+          <input type="hidden" id="editIdDepartamento">
+
+          <div class="mb-3">
+            <label class="form-label">Número</label>
+            <input type="text" class="form-control" id="editNumeroGrupo" required>
+          </div>
+            <label class="form-label">Tronco:</label>
+            <div>
+              <input type="search"
+                     id="searchTroncoEditar"
+                     class="form-control mb-2"
+                     placeholder="Buscar Tronco..." />
+            </div>
+        <div class="tabela-fixa">
+            <!-- Tabela de tronco -->
+            <table class="table table-bordered table-sm" id="tabelaTroncoEditar-NumeroGrupo">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Número Chave</th>
+                  <th>Ramal Inicial</th>
+                  <th>Ramal Final</th>
+                  <th>Operadora</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </div>
+
+          <div class="mb-3">
+            <label class="form-label">Departamento:</label>
+            <input type="search" id="searchDepartamentoEditar" class="form-control mb-2" placeholder="Buscar departamento...">
+    <div class="tabela-fixa">
+            <!-- Tabela de departamentos -->
+            <table class="table table-bordered table-sm" id="tabelaDepartamentosEditar">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Secretaria</th>
+                  <th>Nome</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+
+          <div class="mb-3">
+            <label class="form-label">Descrição</label>
+            <input type="text" class="form-control" id="editDescricaoNumeroGrupo">
+          </div>
+
+          <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" id="editGravadoNumeroGrupo">
+            <label class="form-check-label" for="editGravadoNumeroGrupo">Gravação habilitada</label>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoNumeroGrupo()">Salvar alterações</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  {% include "modais/modaisglobal.html" %}
+  <script src="{{ url_for('static', filename='js/modais/modaisnumerogrupo.js') }}"></script>

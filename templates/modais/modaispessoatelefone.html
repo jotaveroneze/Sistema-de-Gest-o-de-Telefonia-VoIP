@@ -1,0 +1,100 @@
+<div class="modal fade" id="modalVisualizarPessoasTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Pessoas vinculadas ao Telefone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Patrimônio:</strong>
+          <span id="labelTelefonePessoa"></span>
+        </div>
+
+        <button class="btn btn-outline-primary w-100 mb-3"
+                onclick="abrirModalAdicionarPessoaTelefone()">
+          Vincular Pessoa
+        </button>
+        <label class="form-label">Pessoa(s) vinculada(s) ao telefone:</label>
+        <div class="tabela-fixa">
+          <table class="table table-bordered table-sm" id="tabelaPessoasTelefone">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Funcional</th>
+                <th>CPF</th>
+                <th>Departamento</th>
+                <th style="width:80px">Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAdicionarPessoaTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Vincular Pessoa ao Telefone</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+      <div class="alert alert-info py-2 mb-3">
+      <strong>Patrimônio:</strong>
+      <span id="labelAdicionarTelefonePessoa"></span>
+    </div>
+      <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button"
+            class="btn btn-outline-primary w-100"
+            onclick="abrirAdicionarPessoa()">
+            Adicionar Pessoa
+          </button>
+        </div>
+          <input type="text"
+               id="searchPessoaAdicionarTelefone"
+               class="form-control form-control-sm mb-2"
+               placeholder="Pesquisar pessoa...">
+          
+        <div class="tabela-fixa">
+          <table class="table table-bordered table-sm" id="tabelaAdicionarPessoaTelefone">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Funcional</th>
+                <th>CPF</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarPessoaTelefone()">Vincular</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/modais/modaispessoatelefone.js') }}"></script>
+

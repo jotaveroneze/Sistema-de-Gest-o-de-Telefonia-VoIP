@@ -1,0 +1,73 @@
+<!-- Modal Adicionar -->
+<div class="modal fade" id="modalAdicionarOperadora" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Operadora</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formAdicionarOperadora">
+          <div class="mb-3">
+
+            <label class="form-label">Nome</label>
+            <input type="text" id="txtAddNome" class="form-control mb-2" placeholder="Insira um Nome">
+
+            <label class="form-label">Contrato</label>
+            <input type="text" id="txtAddContrato" class="form-control mb-2" placeholder="Insira um Contrato">
+
+            <label class="form-label">Processo</label>
+            <input type="text" id="txtAddProcesso" class="form-control mb-2" placeholder="Insira um Processo">
+
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarNovaOperadora()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar Departamento -->
+<div class="modal fade" id="modalEditarOperadora" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Operadora</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formEditar">
+
+          <input type="hidden" id="editIdOperadora">
+
+
+          <label class="form-label">Operadora:</label>
+          <input type="text" id="editNomeOperadora" class="form-control mb-2" placeholder="Insira uma Operadora" required>
+
+          <label class="form-label">Contrato:</label>
+          <input type="text" id="editContratoOperadora" class="form-control mb-2" placeholder="Insira um Contrato" required>
+
+          <label class="form-label">Processo:</label>
+          <input type="text" id="editProcessoOperadora" class="form-control mb-2" placeholder="Insira um Processo" required>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoOperadora()">Salvar alterações</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="{{ url_for('static', filename='js/modais/modaisoperadora.js') }}"></script>

@@ -1,0 +1,89 @@
+<div class="modal fade" id="modalExportar" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Exportar Dados
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+    <div class="modal-body">
+
+      <form id="formExportar" method="POST" action="/export_excel">
+
+        <div class="mb-3">
+          <h6 class="fw-bold">O que deseja exportar?</h6>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="telefone" id="telefone">
+            <label class="form-check-label" for="telefone">Telefones</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="modelo" id="modelo">
+            <label class="form-check-label" for="modelo">Modelos</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="ramal" id="ramal">
+            <label class="form-check-label" for="ramal">Ramais</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="numerogrupo" id="numerogrupo">
+            <label class="form-check-label" for="numerogrupo">Número de Grupo</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="tronco" id="tronco">
+            <label class="form-check-label" for="tronco">Tronco</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="pessoa" id="pessoa">
+            <label class="form-check-label" for="pessoa">Pessoa</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="departamento" id="departamento">
+            <label class="form-check-label" for="departamento">Departamento</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="empresa" id="empresa">
+            <label class="form-check-label" for="empresa">Empresa</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="exportar" value="usuario" id="usuario">
+            <label class="form-check-label" for="usuario">Usuários</label>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+
+        <button type="button" class="btn btn-primary" id="btnConfirmarExportacao">
+          <i class="fa-solid fa-file-export"></i> Exportar
+        </button>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+ <script src="{{ url_for('static', filename='js/modais/modaisexportar.js') }}"></script>

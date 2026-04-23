@@ -1,0 +1,244 @@
+<div class="modal fade" id="modalVisualizarPessoasRamal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Telefones vinculados ao Ramal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <!-- 🔔 INFO DO RAMAL -->
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Ramal:</strong>
+          <span id="labelNumeroRamal"></span>
+        </div>
+
+        <!-- BOTÃO VINCULAR -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button"
+            class="btn btn-outline-primary w-100"
+            onclick="abrirModalAdicionarPessoaRamal()">
+            Vincular Telefone
+          </button>
+        </div>
+
+        <!-- TABELA -->
+        <label class="form-label">Telefones vinculadas ao ramal:</label>
+        <div class="tabela-fixa">
+          <table class="table table-bordered table-sm" id="tabelaPessoasRamal">
+            <thead>
+              <tr>
+                <th>Patrimônio</th>
+                <th>Serial</th>
+                <th>Nome</th>
+                <th>Funcional</th>
+                <th>CPF</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAdicionarPessoaRamal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Telefone ao Ramal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <!-- 🔹 RAMAL -->
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Ramal:</strong>
+          <span id="labelRamalAdicionarPessoa"></span>
+        </div>
+
+        <!-- 🔍 SEARCH -->
+        <label class="form-label">
+          Selecione o(s) telefone(s) que deseja vincular ao ramal:
+        </label>
+
+        <input type="text"
+               id="searchPessoaAdicionarRamal"
+               class="form-control form-control-sm mb-2"
+               placeholder="Pesquisar telefone...">
+
+        <!-- 📋 TABELA -->
+        <div class="tabela-fixa">
+          <table class="table table-bordered table-sm" id="tabelaAdicionarTelefoneRamal">
+            <thead>
+              <tr>
+                <th style="width: 30px"></th>
+                <th>Patrimônio</th>
+                <th>Serial</th>
+                <th>Pessoas vinculadas</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button class="btn btn-primary" onclick="salvarTelefoneRamal()">
+          Vincular
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalVisualizarRamaisTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Ramais vinculados ao Telefone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <!-- 🔔 INFO DO TELEFONE -->
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Patrimônio:</strong>
+          <span id="labelTelefoneRamal"></span>
+        </div>
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Serial:</strong>
+          <span id="labelTelefoneSerialRamal"></span>
+        </div>
+        <!-- BOTÃO VINCULAR -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <button type="button"
+            class="btn btn-outline-primary w-100"
+            onclick="abrirModalAdicionarRamalTelefone()">
+            Vincular Ramal
+          </button>
+        </div>
+
+        <!-- TABELA -->
+        <label class="form-label">Ramais vinculados ao telefone:</label>
+        <label class="form-label">Ramais vinculados ao telefone:</label>
+
+        <div class="tabela-fixa">
+          <table class="table table-bordered table-sm" id="tabelaRamaisTelefone">
+            <thead>
+              <tr>
+                <th>Número</th>
+                <th>Gravação</th>
+                <th style="width: 80px">Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAdicionarRamalTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Ramal ao Telefone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <!-- 🔹 TELEFONE -->
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Patrimônio:</strong>
+          <span id="labelTelefoneAdicionarRamal"></span>
+        </div>
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Serial:</strong>
+          <span id="labelTelefoneSerialAdicionarRamal"></span>
+        </div>
+        <!-- 🔍 SEARCH -->
+        <label class="form-label">
+          Selecione o(s) ramal(is) que deseja vincular ao telefone:
+        </label>
+
+        <input type="text"
+               id="searchRamalAdicionarTelefone"
+               class="form-control form-control-sm mb-2"
+               placeholder="Pesquisar ramal...">
+
+        <!-- 📋 TABELA -->
+        <div class="tabela-fixa">
+          <table class="table table-bordered table-sm" id="tabelaAdicionarRamalTelefone">
+            <thead>
+              <tr>
+                <th style="width: 30px"></th>
+                <th>Número</th>
+                <th>Status</th>
+                <th>Gravação</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button class="btn btn-primary" onclick="salvarRamalTelefone()">
+          Vincular
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="{{ url_for('static', filename='js/modais/modaistelefoneramal.js') }}"></script>

@@ -1,0 +1,171 @@
+<!-- Modal Adicionar Lugar Telefone -->
+<div class="modal fade" id="modalAdicionarLugarTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Lugar Telefone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+        <form id="formAdicionarLugarTelefone">
+
+          <!-- NOME DO LUGAR -->
+          <div class="mb-3">
+            <label class="form-label">Nome do Lugar</label>
+            <input type="text"
+                   id="txtAddNomeLugarTelefone"
+                   class="form-control"
+                   placeholder="Ex: Sala TI, Recepção, Almoxarifado"
+                   required>
+          </div>
+
+          <!-- ENDEREÇO -->
+          <div class="mb-3">
+            <label class="form-label">Endereço</label>
+            <input type="text"
+                   id="txtAddEnderecoLugarTelefone"
+                   class="form-control"
+                   placeholder="Ex: Prédio Central, Bloco A"
+                   required>
+          </div>
+
+          <!-- ANDAR -->
+          <div class="mb-3">
+            <label class="form-label">Andar</label>
+            <input type="text"
+                   id="txtAddAndarLugarTelefone"
+                   class="form-control"
+                   placeholder="Ex: Térreo, 1º Andar">
+          </div>
+
+          <hr>
+
+          <!-- DEPARTAMENTO -->
+                      <div class="mb-3">
+            <label class="form-label">Departamento:</label>
+            <!-- Campo de pesquisa -->
+            <input type="text" id="searchDepartamento" class="form-control mb-2" placeholder="Pesquisar departamento...">
+        <div class="tabela-fixa">
+              <!-- Tabela de departamentos -->
+            <table class="table table-bordered table-sm" id="tabelaDepartamentos">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Secretaria</th>
+                    <th>Nome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Linhas serão inseridas via JavaScript -->
+              </tbody>
+            </table>
+        </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarLugarTelefone()">
+          Salvar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Lugar Telefone -->
+<div class="modal fade" id="modalEditarLugarTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Lugar Telefone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+        <form id="formEditarLugarTelefone">
+
+          <!-- NOME DO LUGAR -->
+          <div class="mb-3">
+            <label class="form-label">Nome do Lugar</label>
+            <input type="text"
+                   id="txtEditarNomeLugarTelefone"
+                   class="form-control"
+                   placeholder="Ex: Sala TI, Recepção, Almoxarifado"
+                   required>
+          </div>
+
+          <!-- ENDEREÇO -->
+          <div class="mb-3">
+            <label class="form-label">Endereço</label>
+            <input type="text"
+                   id="txtEditarEnderecoLugarTelefone"
+                   class="form-control"
+                   placeholder="Ex: Prédio Central, Bloco A"
+                   required>
+          </div>
+
+          <!-- ANDAR -->
+          <div class="mb-3">
+            <label class="form-label">Andar</label>
+            <input type="text"
+                   id="txtEditarAndarLugarTelefone"
+                   class="form-control"
+                   placeholder="Ex: Térreo, 1º Andar">
+          </div>
+
+          <hr>
+
+          <!-- DEPARTAMENTO -->
+          <div class="mb-3">
+            <label class="form-label">Departamento:</label>
+            <!-- Campo de pesquisa -->
+            <input type="text"
+                   id="searchDepartamentoEditar"
+                   class="form-control mb-2"
+                   placeholder="Pesquisar departamento...">
+    <div class="tabela-fixa">
+            <!-- Tabela de departamentos -->
+            <table class="table table-bordered table-sm" id="tabelaDepartamentosEditar">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Secretaria</th>
+                  <th>Nome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Linhas via JavaScript -->
+              </tbody>
+            </table>
+    </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEditarLugarTelefone()">
+          Salvar Alterações
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/modais/modaislugartelefone.js') }}"></script>

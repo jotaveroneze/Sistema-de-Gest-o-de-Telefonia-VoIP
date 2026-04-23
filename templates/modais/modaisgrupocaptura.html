@@ -1,0 +1,198 @@
+ <div class="modal fade" id="modalAdicionarGrupoCaptura" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Grupo Captura</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formAdicionarGrupoCaptura">
+
+          <div class="mb-2">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="addNome" required>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarGrupoCaptura()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+   <div class="modal fade" id="modalEditarGrupoCaptura" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Grupo Captura</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formEditarGrupoCaptura">
+
+          <input type="hidden" id="editarIdGrupoCaptura">
+
+          <div class="mb-2">
+            <label class="form-label">Nome</label>
+            <input type="text" class="form-control" id="editarNome" required>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoGrupoCaptura()">Salvar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+ <div class="modal fade" id="modalGrupoCaptura" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Cabeçalho -->
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Grupo de Captura — Ramal <span id="ramalNumero"></span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Corpo -->
+      <div class="modal-body">
+        <p>
+          <strong>Grupo atual:</strong>
+          <span id="grupoAtual">—</span>
+        </p>
+
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th class="text-center" style="width: 60px;">Selecionar</th>
+              <th>Grupo de Captura</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaGruposCaptura">
+            <!-- preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Rodapé -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button class="btn btn-primary" onclick="salvarGrupoCaptura()">
+          Salvar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalVisualizarGrupoCaptura" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Cabeçalho -->
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Ramais do Grupo: <span id="nomeGrupoCaptura"></span>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary"
+                    onclick="abrirModalVincularRamal()">Vincular Novo Ramal
+            </button>
+
+        </div>
+      <!-- Corpo -->
+      <div class="modal-body">
+
+        <table class="table table-bordered table-sm align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Ramal</th>
+              <th>Usuário</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyRamaisGrupoCaptura">
+            <tr>
+              <td colspan="3" class="text-center text-muted">
+                Carregando...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <!-- Rodapé -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+ <div class="modal fade" id="modalVincularRamalGrupoCaptura" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Cabeçalho -->
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Vincular Ramal ao Grupo
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Corpo -->
+      <div class="modal-body">
+
+        <input type="hidden" id="idGrupoCapturaSelecionado">
+
+        <div class="mb-3">
+          <label class="form-label">Ramal</label>
+          <select class="form-select" id="selectRamalGrupoCaptura">
+            <option value="">Carregando ramais...</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Rodapé -->
+      <div class="modal-footer">
+        <button class="btn btn-primary"
+                onclick="vincularRamalGrupoCaptura()">Vincular
+        </button>
+
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+   <script src="{{ url_for('static', filename='js/modais/modaisGrupoCaptura.js') }}"></script>

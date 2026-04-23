@@ -1,0 +1,126 @@
+<!-- Modal Adicionar -->
+        <div class="modal fade" id="modalAdicionar" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Adicionar Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+
+              <div class="modal-body">
+                <form id="formAdicionar">
+                  <div class="mb-2">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="addNome" required>
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="addEmail" required>
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Ramal</label>
+                    <input type="number" class="form-control" id="addRamal">
+                  </div>
+
+                  <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="addAdm">
+                    <label class="form-check-label">Administrador</label>
+                  </div>
+
+                  <div class="mb-3">
+                  <label class="form-label">Setor:</label>
+
+                 <!-- Campo de pesquisa -->
+                <input type="text" id="searchDepartamento" class="form-control mb-2" placeholder="Pesquisar departamento...">
+        <div class="tabela-fixa">
+                <!-- Tabela de departamentos -->
+                <table class="table table-bordered table-sm" id="tabelaDepartamentos">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Nome</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Linhas serão inseridas via JavaScript -->
+                  </tbody>
+                </table>
+        </div>
+</div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" onclick="salvarNovo()">Salvar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Editar -->
+        <div class="modal fade" id="modalEditar" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Editar Usuário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+
+              <div class="modal-body">
+                <form id="formEditar">
+                  <input type="hidden" id="editIdUsuario">
+
+                  <div class="mb-2">
+                    <label class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="editNome" required>
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="editEmail" required>
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label">Ramal</label>
+                    <input type="number" class="form-control" id="editRamal">
+                  </div>
+                    <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="editAdm">
+                    <label class="form-check-label">Administrador</label>
+                  </div>
+                     <div class="mb-3">
+                  <label class="form-label">Setor:</label>
+
+                 <!-- Campo de pesquisa -->
+                <input type="text" id="searchDepartamentoEditar" class="form-control mb-2" placeholder="Pesquisar departamento...">
+        <div class="tabela-fixa">
+                <!-- Tabela de departamentos -->
+                <table class="table table-bordered table-sm" id="tabelaDepartamentosEditar">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Nome</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Linhas serão inseridas via JavaScript -->
+                  </tbody>
+                </table>
+        </div>
+</div>
+                </form>
+              </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" onclick="salvarEdicao()">Salvar alterações</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>

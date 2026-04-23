@@ -1,0 +1,59 @@
+<!-- Modal Nova Pendência -->
+<div class="modal fade" id="modalNovaPendencia" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Cabeçalho -->
+      <div class="modal-header">
+        <h5 class="modal-title">Nova Pendência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Corpo -->
+      <div class="modal-body">
+
+        <!-- ⚠️ Aviso -->
+        <div class="alert alert-warning small" role="alert">
+          <strong>Atenção:</strong><br>
+          Pendências relacionadas a
+          <ul class="mb-0">
+            <li>alterações de ramais</li>
+            <li>atribuição de telefone a uma pessoa</li>
+            <li>atribuição de número de grupo a um ramal</li>
+            <li>atribuição de grupo de captura a um ramal</li>
+          </ul>
+          são criadas <strong>automaticamente</strong> após a edição no sistema e
+          <strong>não devem ser registradas neste formulário</strong>.
+        </div>
+
+        <div class="mb-3">
+          <label for="textoPendencia" class="form-label">
+            Descreva a pendência
+          </label>
+          <textarea
+            id="textoPendencia"
+            class="form-control"
+            rows="4"
+            placeholder="Digite a pendência aqui..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Rodapé -->
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">
+          Cancelar
+        </button>
+
+        <button type="button"
+                class="btn btn-primary"
+                onclick="criarPendencia()">
+          Criar Pendência
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

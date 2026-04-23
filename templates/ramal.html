@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ramal</title>
+
+  <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23007bff' d='M3.654 1.328a.678.678 0 0 1 .737-.143l2.522 1.01c.329.132.445.507.261.817L6.29 4.561a.678.678 0 0 0 .145.745l3.006 3.006a.678.678 0 0 0 .745.145l1.55-.883c.31-.184.685-.068.817.261l1.01 2.522a.678.678 0 0 1-.143.737l-1.2 1.2c-.86.86-2.133 1.09-3.237.56a18.6 18.6 0 0 1-7.588-7.588c-.53-1.104-.3-2.377.56-3.237l1.2-1.2z'/%3E%3C/svg%3E">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+
+<body>
+
+{% include "sidebar.html" %}
+
+<div class="content-area">
+
+  <!-- 🔎 Filtros -->
+  <form class="row g-3 align-items-center mb-4">
+    <div class="col-md-4">
+      <input type="search" id="searchRamal" class="form-control" placeholder="Buscar ramal..." />
+    </div>
+    <div class="col-md-3">
+      <select id="filtroGravado" class="form-select">
+        <option value="todos">Todos</option>
+        <option value="gravado">Somente gravados</option>
+        <option value="nao_gravado">Somente não gravados</option>
+      </select>
+    </div>
+    <div class="col-md-5">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAdicionarRamal">
+        <i class="fa-solid fa-plus me-1"></i>Adicionar Ramal
+      </button>
+    </div>
+  </form>
+
+  <!-- 🔥 CARD PRINCIPAL -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+
+      <!-- Cabeçalho -->
+      <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <h5 class="mb-0 fw-semibold">
+          <i class="bi bi-telephone me-2"></i>Lista de Ramais
+        </h5>
+      </div>
+
+      <!-- Abas -->
+      <ul class="nav nav-tabs nav-fill mb-3">
+        <li class="nav-item">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-geral">Geral</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-em-uso">Em Uso</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-vago">Vago</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-detalhe">Detalhe</button>
+        </li>
+      </ul>
+
+      <!-- Loading -->
+      <div id="loadingTabela" class="text-center my-4 d-none">
+        <div class="spinner-border text-primary" role="status"></div>
+        <div class="mt-2">Carregando ramais...</div>
+      </div>
+
+      <div class="tab-content">
+
+        <!-- 🟢 ABA GERAL -->
+        <div class="tab-pane fade show active" id="tab-geral">
+          <div class="table-responsive tabela-container">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light text-center">
+                <tr>
+                  <th style="width:25%;">Ramal</th>
+                  <th style="width:25%;">Situação</th>
+                  <th style="width:25%;">Gravação</th>
+                  <th style="width:25%;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaRamal"></tbody>
+            </table>
+
+            <!-- PAGINAÇÃO GERAL -->
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+              <div>
+                <button id="btnAnteriorGeral" class="btn btn-outline-secondary btn-sm me-2" disabled>
+                  <i class="bi bi-chevron-left"></i> Anterior
+                </button>
+                <button id="btnProximaGeral" class="btn btn-outline-secondary btn-sm">
+                  <i class="bi bi-chevron-right"></i> Próxima
+                </button>
+              </div>
+              <ul id="listaPaginasGeral" class="pagination pagination-sm mb-0 mx-2"></ul>
+              <div class="d-flex justify-content-end align-items-center gap-2 mb-2">
+                <button id="btnRetrocederGeral" class="btn btn-outline-secondary btn-sm" title="Voltar 10 páginas">
+                  <i class="fa-solid fa-angles-left"></i>
+                </button>
+                <button id="btnAvancarGeral" class="btn btn-outline-secondary btn-sm" title="Avançar 10 páginas">
+                  <i class="fa-solid fa-angles-right"></i>
+                </button>
+                <div id="infoPaginacaoGeral" class="text-muted fw-medium"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🟡 ABA EM USO -->
+        <div class="tab-pane fade" id="tab-em-uso">
+          <div class="table-responsive tabela-container">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light text-center">
+                <tr>
+                  <th style="width:15%;">Ramal</th>
+                  <th style="width:20%;">Patrimônio</th>
+                  <th style="width:25%;">Pessoa</th>
+                  <th style="width:15%;">Gravação</th>
+                  <th style="width:25%;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaRamalEmUso"></tbody>
+            </table>
+
+            <!-- PAGINAÇÃO EM USO -->
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+              <div>
+                <button id="btnAnteriorEmUso" class="btn btn-outline-secondary btn-sm me-2" disabled>
+                  <i class="bi bi-chevron-left"></i> Anterior
+                </button>
+                <button id="btnProximaEmUso" class="btn btn-outline-secondary btn-sm">
+                  <i class="bi bi-chevron-right"></i> Próxima
+                </button>
+              </div>
+              <ul id="listaPaginasEmUso" class="pagination pagination-sm mb-0 mx-2"></ul>
+              <div class="d-flex justify-content-end align-items-center gap-2 mb-2">
+                <button id="btnRetrocederEmUso" class="btn btn-outline-secondary btn-sm" title="Voltar 10 páginas">
+                  <i class="fa-solid fa-angles-left"></i>
+                </button>
+                <button id="btnAvancarEmUso" class="btn btn-outline-secondary btn-sm" title="Avançar 10 páginas">
+                  <i class="fa-solid fa-angles-right"></i>
+                </button>
+                <div id="infoPaginacaoEmUso" class="text-muted fw-medium"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🔴 ABA VAGO -->
+        <div class="tab-pane fade" id="tab-vago">
+          <div class="table-responsive tabela-container">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light text-center">
+                <tr>
+                  <th style="width:40%;">Ramal</th>
+                  <th style="width:40%;">Gravação</th>
+                  <th style="width:20%;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaRamalVago"></tbody>
+            </table>
+
+            <!-- PAGINAÇÃO VAGO -->
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+              <div>
+                <button id="btnAnteriorVago" class="btn btn-outline-secondary btn-sm me-2" disabled>
+                  <i class="bi bi-chevron-left"></i> Anterior
+                </button>
+                <button id="btnProximaVago" class="btn btn-outline-secondary btn-sm">
+                  <i class="bi bi-chevron-right"></i> Próxima
+                </button>
+              </div>
+              <ul id="listaPaginasVago" class="pagination pagination-sm mb-0 mx-2"></ul>
+              <div class="d-flex justify-content-end align-items-center gap-2 mb-2">
+                <button id="btnRetrocederVago" class="btn btn-outline-secondary btn-sm" title="Voltar 10 páginas">
+                  <i class="fa-solid fa-angles-left"></i>
+                </button>
+                <button id="btnAvancarVago" class="btn btn-outline-secondary btn-sm" title="Avançar 10 páginas">
+                  <i class="fa-solid fa-angles-right"></i>
+                </button>
+                <div id="infoPaginacaoVago" class="text-muted fw-medium"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🔵 ABA DETALHE -->
+        <div class="tab-pane fade" id="tab-detalhe">
+          <div class="table-responsive tabela-container">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light text-center">
+                <tr>
+                  <th style="width:8%;">Ramal</th>
+                  <th style="width:8%;">Gravado</th>
+                  <th style="width:10%;">Nº Chave</th>
+                  <th style="width:8%;">Ram.Ini</th>
+                  <th style="width:8%;">Ram.Fin</th>
+                  <th style="width:10%;">Operadora</th>
+                  <th style="width:12%;">Grupo Captura</th>
+                  <th style="width:8%;">Situação</th>
+                  <th style="width:10%;">Patrimônio</th>
+                  <th style="width:10%;">Pessoa</th>
+                  <th style="width:8%;">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tabelaRamalDetalhe"></tbody>
+            </table>
+
+            <!-- PAGINAÇÃO DETALHE -->
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+              <div>
+                <button id="btnAnteriorDetalhe" class="btn btn-outline-secondary btn-sm me-2" disabled>
+                  <i class="bi bi-chevron-left"></i> Anterior
+                </button>
+                <button id="btnProximaDetalhe" class="btn btn-outline-secondary btn-sm">
+                  <i class="bi bi-chevron-right"></i> Próxima
+                </button>
+              </div>
+              <ul id="listaPaginasDetalhe" class="pagination pagination-sm mb-0 mx-2"></ul>
+              <div class="d-flex justify-content-end align-items-center gap-2 mb-2">
+                <button id="btnRetrocederDetalhe" class="btn btn-outline-secondary btn-sm" title="Voltar 10 páginas">
+                  <i class="fa-solid fa-angles-left"></i>
+                </button>
+                <button id="btnAvancarDetalhe" class="btn btn-outline-secondary btn-sm" title="Avançar 10 páginas">
+                  <i class="fa-solid fa-angles-right"></i>
+                </button>
+                <div id="infoPaginacaoDetalhe" class="text-muted fw-medium"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAIS (mantém iguais) -->
+{% include "modais/modaisramal.html" %}
+{% include "modais/modaisgrupocaptura.html" %}
+{% include "modais/modaistelefoneramal.html" %}
+{% include "modais/modaisramalnumerogrupo.html" %}
+{% include "modais/modaisnumerogrupo.html" %}
+{% include "modais/modaistronco.html" %}
+{% include "modais/modaisoperadora.html" %}
+{% include "modais/modaisdepartamento.html" %}
+{% include "modais/modaissecretaria.html" %}
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/globals.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ramal.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modais/modaisoperadora.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modais/modaistronco.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modais/modaisdepartamentoeditar.js') }}"></script>
+
+</body>
+</html>

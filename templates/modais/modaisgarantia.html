@@ -1,0 +1,43 @@
+<div class="modal fade" id="modalDefeito" tabindex="-1" aria-labelledby="modalDefeitoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDefeitoLabel">Descrever Defeito</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <div class="modal-body">
+        <textarea class="form-control" id="descricaoDefeito" rows="6" placeholder="Descreva o defeito aqui..."></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="gerarTermoGarantiaComDefeito()">Enviar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalSolucao" tabindex="-1" aria-labelledby="modalSolucaoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSolucaoLabel">Descrever Solução</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <div class="modal-body">
+        <textarea class="form-control" id="descricaoSolucao" rows="6" placeholder="Descreva a solução aqui..."></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" onclick="confirmarDevolucao()">Enviar</button>
+      </div>
+
+    </div>
+  </div>
+</div>

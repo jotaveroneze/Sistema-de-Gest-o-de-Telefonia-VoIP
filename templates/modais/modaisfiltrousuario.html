@@ -1,0 +1,51 @@
+<!-- Modal Filtros -->
+<div class="modal fade" id="modalFiltros" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Filtros de Usuários</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-2">
+          <label class="form-label">Nome contém</label>
+          <input type="text" id="filtroNome" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Email contém</label>
+          <input type="text" id="filtroEmail" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Ramal contém</label>
+          <input type="text" id="filtroRamal" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Departamento contém</label>
+          <input type="text" id="filtroDepartamento" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Administrador</label>
+          <select id="filtroAdm" class="form-select">
+            <option value="todos">Todos</option>
+            <option value="sim">Somente administradores</option>
+            <option value="nao">Não administradores</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button class="btn btn-primary" onclick="aplicarFiltrosModal()">Aplicar Filtros</button>
+      </div>
+
+    </div>
+  </div>
+</div>

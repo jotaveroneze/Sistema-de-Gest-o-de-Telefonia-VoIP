@@ -1,0 +1,357 @@
+<div class="modal fade" id="modalAdicionarTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Telefone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <!-- DADOS DO TELEFONE -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Patrimônio</label>
+            <input type="text" class="form-control" id="addpatrimonio" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Serial</label>
+            <input type="text" class="form-control" id="addserial" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Macaddress</label>
+            <input type="text" class="form-control" id="addmacaddress" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nome Telefone</label>
+            <input type="text" class="form-control" id="addnometelefone" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Processo de Compra</label>
+            <input type="text" class="form-control" id="addprocessocompra" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nota Fiscal</label>
+            <input type="text" class="form-control" id="addnotafiscal" required>
+          </div>
+        </div>
+
+        <!-- SWITCHES -->
+        <div class="d-flex flex-wrap mb-4">
+
+          <div class="form-check form-switch me-4">
+            <input class="form-check-input" type="checkbox" id="addmontado">
+            <label class="form-check-label">Montado</label>
+          </div>
+
+          <div class="form-check form-switch me-4">
+            <input class="form-check-input" type="checkbox" id="addpatrimoniado">
+            <label class="form-check-label">Patrimoniado</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="adddefeito">
+            <label class="form-check-label">Defeito</label>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- MODELO -->
+        <div class="mb-4">
+          <label class="form-label fw-bold">Modelo</label>
+
+          <input type="text"
+                 id="searchModelo"
+                 class="form-control mb-2"
+                 placeholder="Pesquisar Modelo...">
+
+          <div class="tabela-fixa">
+              <table class="table table-bordered table-sm" id="tabelaModelo">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Modelo</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- LUGAR TELEFONE -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">Lugar Telefone</label>
+
+          <input type="text"
+                 id="searchLugarTelefone"
+                 class="form-control mb-2"
+                 placeholder="Pesquisar Lugar Telefone...">
+
+          <div class="tabela-fixa">
+              <table class="table table-bordered table-sm" id="tabelaLugarTelefone">
+                <thead>
+                  <tr>
+                    <th>Lugar</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarTelefone()">Salvar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEditarTelefone" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <!-- HEADER -->
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Telefone</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-body">
+
+        <!-- ID OCULTO -->
+        <input type="hidden" id="editIdTelefone">
+
+        <!-- DADOS DO TELEFONE -->
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Patrimônio</label>
+            <input type="text" class="form-control" id="editpatrimonio" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Serial</label>
+            <input type="text" class="form-control" id="editserial" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Macaddress</label>
+            <input type="text" class="form-control" id="editmacaddress" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nome Telefone</label>
+            <input type="text" class="form-control" id="editnometelefone" required>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Processo de Compra</label>
+            <input type="text" class="form-control" id="editprocessocompra" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Nota Fiscal</label>
+            <input type="text" class="form-control" id="editnotafiscal" required>
+          </div>
+        </div>
+
+        <!-- SWITCHES -->
+        <div class="d-flex flex-wrap mb-4">
+
+          <div class="form-check form-switch me-4">
+            <input class="form-check-input" type="checkbox" id="editmontado">
+            <label class="form-check-label">Montado</label>
+          </div>
+
+          <div class="form-check form-switch me-4">
+            <input class="form-check-input" type="checkbox" id="editpatrimoniado">
+            <label class="form-check-label">Patrimoniado</label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="editdefeito">
+            <label class="form-check-label">Defeito</label>
+          </div>
+        </div>
+
+        <hr>
+
+        <!-- MODELO -->
+        <div class="mb-4">
+          <label class="form-label fw-bold">Modelo</label>
+
+          <input type="text"
+                 id="searchModeloEditar"
+                 class="form-control mb-2"
+                 placeholder="Pesquisar Modelo...">
+
+            <div class="tabela-fixa">
+              <table class="table table-bordered table-sm" id="tabelaModeloEditar">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Modelo</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <!-- LUGAR TELEFONE -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">Lugar Telefone</label>
+
+          <input type="text"
+                 id="searchLugarTelefoneEditar"
+                 class="form-control mb-2"
+                 placeholder="Pesquisar Lugar Telefone...">
+
+        <div class="tabela-fixa">
+          <table class="table table-bordered table-sm" id="tabelaLugarTelefoneEditar">
+            <thead>
+              <tr>
+                <th>Lugar</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoTelefone()">
+          Salvar Alterações
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal Filtros Telefones -->
+<div class="modal fade" id="modalFiltrosTelefone" tabindex="-1">
+  <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Filtros de Telefones</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="mb-2">
+          <label class="form-label">Patrimônio contém</label>
+          <input type="text" id="filtroPatrimonio" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Serial contém</label>
+          <input type="text" id="filtroSerial" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">MAC contém</label>
+          <input type="text" id="filtroMac" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Modelo contém</label>
+          <input type="text" id="filtroModelo" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Secretaria contém</label>
+          <input type="text" id="filtroSecretaria" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Departamento contém</label>
+          <input type="text" id="filtroDepartamento" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Endereço contém</label>
+          <input type="text" id="filtroEndereco" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Local contém</label>
+          <input type="text" id="filtroLocal" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Andar contém</label>
+          <input type="text" id="filtroAndar" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Ramal contém</label>
+          <input type="text" id="filtroRamal" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Pessoa contém</label>
+          <input type="text" id="filtroPessoa" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Funcional contém</label>
+          <input type="text" id="filtroFuncional" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">CPF contém</label>
+          <input type="text" id="filtroCpf" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Data de Entrega</label>
+          <input type="date" id="filtroDataEntrega" class="form-control">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label">Última Alteração</label>
+          <input type="date" id="filtroUltimaAlteracao" class="form-control">
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button class="btn btn-primary" onclick="aplicarFiltrosTelefone()">Aplicar Filtros</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="{{ url_for('static', filename='js/modais/modaistelefone.js') }}"></script>

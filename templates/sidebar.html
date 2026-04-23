@@ -1,0 +1,661 @@
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- CSS Original -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<!-- CSS Premium para Sidebar - Sobrescreve e corrige -->
+<style>
+  /* ===== VARIABLES ===== */
+  :root {
+    --primary-color: #3b5bdb;
+    --primary-dark: #2d47b8;
+    --success-color: #51cf66;
+    --warning-color: #ffa94d;
+    --danger-color: #ff6b6b;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-300: #cbd5e1;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-900: #0f172a;
+    --radius: 0.875rem;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .sidebar {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+    color: var(--slate-900) !important;
+    border-right: 1px solid var(--slate-200) !important;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  /* ===== USER INFO ===== */
+  .sidebar .nome {
+    color: var(--slate-900) !important;
+    border-bottom: 1px solid var(--slate-200) !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .sidebar .nome i,
+  .sidebar .email i {
+    color: var(--primary-color) !important;
+    margin-right: 6px;
+  }
+
+  .sidebar .email {
+    color: var(--slate-600) !important;
+    border-bottom: 1px solid var(--slate-200) !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  /* ===== MAIN NAVIGATION LINKS ===== */
+  .sidebar > a {
+    color: var(--slate-700) !important;
+    background: transparent !important;
+    border-left: 3px solid transparent !important;
+    margin: 0.25rem 0 !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.5rem !important;
+    transition: var(--transition);
+  }
+
+  .sidebar > a:hover {
+    background: linear-gradient(135deg, #e7f5ff 0%, #d0ebff 100%) !important;
+    color: var(--primary-color) !important;
+    border-left-color: var(--primary-color) !important;
+    transform: translateX(4px);
+  }
+
+  .sidebar > a i {
+    color: var(--primary-color) !important;
+    font-size: 1.1rem !important;
+  }
+
+  /* ===== SUBMENU BUTTON ===== */
+  .sidebar .submenu-btn {
+    color: var(--slate-700) !important;
+    background: transparent !important;
+    border-left: 3px solid transparent !important;
+    margin: 0.25rem 0 !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.5rem !important;
+    transition: var(--transition);
+    font-weight: 600 !important;
+  }
+
+  .sidebar .submenu-btn:hover {
+    background: linear-gradient(135deg, #e7f5ff 0%, #d0ebff 100%) !important;
+    color: var(--primary-color) !important;
+    border-left-color: var(--primary-color) !important;
+    transform: translateX(4px);
+  }
+
+  .sidebar .submenu-btn i:first-child {
+    color: var(--primary-color) !important;
+    font-size: 1.1rem !important;
+  }
+
+  .sidebar .submenu-btn .seta {
+    color: var(--slate-500) !important;
+    font-size: 0.75rem !important;
+    transition: var(--transition);
+  }
+
+  .sidebar .submenu.open .submenu-btn {
+    background: linear-gradient(135deg, #e7f5ff 0%, #d0ebff 100%) !important;
+    color: var(--primary-color) !important;
+    border-left-color: var(--primary-color) !important;
+  }
+
+  .sidebar .submenu.open .submenu-btn .seta {
+    color: var(--primary-color) !important;
+    transform: rotate(180deg);
+  }
+
+  /* ===== SUBMENU CONTENT (toggle) ===== */
+  /* ✅ Fechado por padrão — funciona em desktop e mobile */
+  .sidebar .submenu-content {
+    display: none;
+    flex-direction: column;
+    background: var(--slate-50) !important;
+    border-radius: 0.5rem !important;
+    margin: 0.5rem 0 !important;
+  }
+
+  /* ✅ Abre só quando tem .open — funciona em desktop e mobile */
+  .sidebar .submenu.open .submenu-content {
+    display: flex !important;
+  }
+
+  .sidebar .submenu-content a {
+    color: var(--slate-600) !important;
+    background: transparent !important;
+    border-left: 3px solid transparent !important;
+    padding: 0.75rem 1.5rem !important;
+    margin: 0.25rem 0.5rem !important;
+    border-radius: 0.4rem !important;
+    transition: var(--transition);
+  }
+
+  .sidebar .submenu-content a:hover {
+    background: white !important;
+    color: var(--primary-color) !important;
+    border-left-color: var(--primary-color) !important;
+    transform: translateX(4px);
+  }
+
+  .sidebar .submenu-content a i {
+    color: var(--primary-color) !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* ===== ADMIN BUTTONS ===== */
+  .sidebar .admin-buttons {
+    display: flex !important;
+    gap: 0.75rem !important;
+    flex-wrap: wrap !important;
+    margin-top: 1rem !important;
+    padding: 0.75rem !important;
+    background: white !important;
+    border-radius: 0.5rem !important;
+    border: 1px solid var(--slate-200) !important;
+  }
+
+  .sidebar .btn-icon {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    border-radius: 0.5rem !important;
+    border: 1px solid var(--slate-200) !important;
+    background: white !important;
+    color: var(--slate-700) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: var(--transition);
+    font-size: 1rem !important;
+    padding: 0 !important;
+  }
+
+  .sidebar .btn-icon:hover {
+    background: linear-gradient(135deg, #e7f5ff 0%, #d0ebff 100%) !important;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 91, 219, 0.2) !important;
+  }
+
+  .sidebar .btn-relatorio { color: var(--primary-color) !important; }
+
+  .sidebar .btn-sair { color: var(--danger-color) !important; }
+
+  .sidebar .btn-sair:hover {
+    background: linear-gradient(135deg, #ffe7e7 0%, #ffd6d6 100%) !important;
+    color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
+  }
+
+  /* ===== SIDEBAR BOTTOM ===== */
+  .sidebar .sidebar-bottom {
+    padding: 1rem 0 !important;
+    border-top: 1px solid var(--slate-200) !important;
+    margin-top: auto !important;
+  }
+
+  .sidebar .sidebar-bottom .btn-sair {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    background: linear-gradient(135deg, #ffe7e7 0%, #ffd6d6 100%) !important;
+    color: var(--danger-color) !important;
+    font-weight: 600 !important;
+    border-radius: 0.5rem !important;
+    border: 1px solid #ff8a8a !important;
+    transition: var(--transition);
+    text-decoration: none !important;
+  }
+
+  .sidebar .sidebar-bottom .btn-sair:hover {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%) !important;
+    color: white !important;
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3) !important;
+    transform: translateY(-2px);
+  }
+
+  /* ===== SIDEBAR CREDITS ===== */
+  .sidebar .sidebar-credits {
+    font-size: 0.75rem !important;
+    color: var(--slate-500) !important;
+    text-align: center !important;
+    margin-top: 0.75rem !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+  }
+
+  .sidebar .sidebar-credits-nomes {
+    font-size: 0.7rem !important;
+    color: var(--slate-400) !important;
+    margin-top: 0.5rem !important;
+    font-weight: 500 !important;
+  }
+
+  /* ===== HR ===== */
+  .sidebar hr {
+    border-color: var(--slate-200) !important;
+    margin: 0.75rem 0 !important;
+    opacity: 0.5 !important;
+  }
+
+  /* ===== HAMBURGER BUTTON ===== */
+  .btn-hamburger {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 1100;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(59, 91, 219, 0.35);
+    transition: var(--transition);
+  }
+
+  .btn-hamburger:hover {
+    background: var(--primary-dark);
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 993px) {
+    .btn-hamburger { display: none !important; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 992px) {
+    .sidebar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      bottom: 0 !important;
+      width: 260px !important;
+      height: 100vh !important;
+      flex-direction: column !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
+      max-height: 100vh !important;
+      z-index: 1050 !important;
+      transform: translateX(-100%) !important;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .sidebar.sidebar-open {
+      transform: translateX(0) !important;
+    }
+
+    /* ✅ Mostra nome, email, bottom — mas NÃO submenu-content */
+    .sidebar .nome,
+    .sidebar .email,
+    .sidebar .sidebar-bottom,
+    .sidebar .admin-buttons {
+      display: flex !important;
+    }
+
+    /* Overlay */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1040;
+      backdrop-filter: blur(2px);
+    }
+
+    .sidebar-overlay.active {
+      display: block;
+    }
+  }
+</style>
+
+
+<!-- Overlay (fundo escuro) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Botão Hamburger (só aparece no mobile) -->
+<button class="btn-hamburger" id="sidebarToggle" title="Menu">
+  <i class="bi bi-list"></i>
+</button>
+
+
+<nav class="sidebar d-flex flex-column">
+
+
+<!-- Linha de usuário + notificação -->
+<div class="d-flex align-items-center justify-content-between p-2">
+      <!-- Botão de Notificações -->
+  <button class="btn-icon btn-relatorio" id="btn-notificacao" title="Pendências">
+    <i class="bi bi-bell"></i>
+    <span class="badge-notificacao" id="badge-notificacao"></span>
+  </button>
+  <!-- Nome do usuário -->
+  <p class="nome mb-0">
+    <span>{{ user_nome }}</span>
+  </p>
+
+
+</div>
+
+  <!-- Início -->
+    <a href="/home">
+      <i class="bi bi-house-door"></i> Início
+    </a>
+
+  <!-- SUBMENU: TELEFONES -->
+<div class="submenu">
+  <button class="submenu-btn">
+    <i class="bi bi-telephone"></i> Telefones
+    <i class="bi bi-chevron-down seta"></i>
+  </button>
+
+  <div class="submenu-content">
+    <a href="/telefone">
+      <i class="bi bi-telephone-fill"></i> Telefones IP
+    </a>
+
+    <a href="/modelo">
+      <i class="bi bi-phone"></i> Modelos
+    </a>
+  </div>
+</div>
+
+
+  <!-- SUBMENU: RAMAIS -->
+<div class="submenu">
+  <button class="submenu-btn">
+    <i class="bi bi-diagram-3"></i> Ramais
+    <i class="bi bi-chevron-down seta"></i>
+  </button>
+
+  <div class="submenu-content">
+    <a href="/ramais">
+      <i class="bi bi-list-ol"></i> Lista de Ramais
+    </a>
+
+    <a href="/numerogrupo">
+      <i class="bi bi-diagram-2"></i> Número Virtual
+    </a>
+
+    <a href="/tronco">
+      <i class="bi bi-router"></i> Tronco
+    </a>
+
+    <a href="/grupocaptura">
+      <i class="bi bi-telephone-inbound-fill"></i> Grupo Captura
+    </a>
+
+    <a href="/operadora">
+      <i class="bi bi-broadcast"></i> Operadoras
+    </a>
+
+  </div>
+</div>
+
+
+  <!-- SUBMENU: PESSOAS -->
+<div class="submenu">
+  <button class="submenu-btn">
+    <i class="bi bi-people"></i> Pessoas
+    <i class="bi bi-chevron-down seta"></i>
+  </button>
+
+  <div class="submenu-content">
+    <a href="/pessoas">
+      <i class="bi bi-person-lines-fill"></i> Lista de Pessoas
+    </a>
+
+    <a href="/departamento">
+      <i class="bi bi-layers"></i> Departamentos
+    </a>
+
+    <a href="/secretaria">
+      <i class="bi bi-clipboard-data"></i> Secretarias
+    </a>
+
+    <a href="/empresa">
+      <i class="bi bi-building"></i> Empresas
+    </a>
+
+    <a href="/lugartelefone">
+        <i class="bi bi-geo-alt-fill"></i> Lugar
+    </a>
+
+
+  </div>
+</div>
+
+
+  <!-- SUBMENU: ADMINISTRADOR -->
+  <div class="submenu">
+    <button class="submenu-btn">
+    <i class="bi bi-gear"></i></i> Administrador
+
+    </button>
+    <div class="submenu-content">
+      <a href="/usuario"><i class="bi bi-person-gear"></i> Usuário</a>
+    </div>
+
+    <div class="submenu-content">
+      <a href="/pendencias"><i class="bi bi-clock-history"></i> Pendencias</a>
+    </div>
+
+     <div class="submenu-content">
+      <a href="/logs"><i class="bi bi-card-list"></i>Auditoria</a>
+    </div>
+
+    <div class="submenu-content">
+      <a href="/lixeira"><i class="bi bi-trash"></i>Lixeira</a>
+    </div>
+            <div class="admin-buttons" style="margin-top:10px; display:flex; gap:12px; flex-wrap: wrap;">
+
+        <button type="button"
+           class="btn-icon btn-relatorio ajustar-baixo"
+           id="btn-importar"
+           title="Importar dados">
+            <i class="bi bi-upload"></i>
+        </button>
+
+
+        <button class="btn-icon btn-sair" title="Exportar Dados" id="btn-export-excel">
+          <i class="bi bi-download"></i>
+        </button>
+
+        <a href="/relatorio/dashboard/pdf"
+           class="btn-icon btn-relatorio ajustar-baixo"
+           id="btn-relatorio"
+           title="Gerar Relatórios"
+           onclick="return confirmarRelatorio()">
+            <i class="bi bi-file-earmark-text"></i>
+        </a>
+
+
+        <button class="btn-icon btn-sair" title="Gerar Backup" id="btn-backup">
+          <i class="bi bi-database"></i>
+        </button>
+      </div>
+  </div>
+
+  <!-- Rodapé: Sair + Créditos -->
+  <div class="sidebar-bottom mt-auto">
+    <a href="/logout" class="btn-sair">
+      <i class="bi bi-box-arrow-right"></i> Sair
+    </a>
+
+  <!-- Linha acima dos créditos -->
+  <hr style="border-color: #ccc; margin: 10px 0;">
+
+    <div class="sidebar-credits">
+      © Centro de Informática - PMP
+      <div class="sidebar-credits-nomes">
+        Mateus A. Viotto e João H. V. Pereira
+      </div>
+    </div>
+</div>
+</nav>
+
+{% include "modais/modaisexportar.html" %}
+{% include "modais/modaisimportar.html" %}
+<!-- Scripts -->
+<script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// ===== SUBMENUS (abre/fecha com animação) =====
+document.querySelectorAll(".submenu-btn").forEach(btn => {
+  btn.addEventListener("click", function (e) {
+    e.stopPropagation(); // evita conflito com fechar sidebar
+
+    const submenu = btn.parentElement;
+    const estaAberto = submenu.classList.contains("open");
+
+    // Fecha todos os outros
+    document.querySelectorAll(".submenu").forEach(outro => {
+      if (outro !== submenu) outro.classList.remove("open");
+    });
+
+    // Abre ou fecha o atual
+    submenu.classList.toggle("open", !estaAberto);
+  });
+});
+
+  // Botão Importar (Abre o Modal)
+  document.getElementById("btn-importar").addEventListener("click", function () {
+    const modal = new bootstrap.Modal(
+      document.getElementById("modalImportar")
+    );
+    modal.show();
+  });
+  // Botão Backup
+  document.getElementById("btn-backup").addEventListener("click", function() {
+    if (confirm("Deseja realmente gerar o backup?")) {
+      fetch("/backup")
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert("✅ Sucesso: " + data.mensagem);
+        } else {
+          alert("❌ Erro: " + data.mensagem);
+        }
+      })
+      .catch(error => {
+        alert("❌ Erro ao chamar o backup!");
+        console.error(error);
+      });
+    }
+  });
+
+  document.getElementById("btn-export-excel").addEventListener("click", function () {
+    const modal = new bootstrap.Modal(
+      document.getElementById("modalExportar")
+    );
+    modal.show();
+  });
+function confirmarRelatorio() {
+    return confirm("Deseja realmente gerar o relatório em PDF?");
+}
+
+// Ao clicar no sininho, redireciona para /pendencias
+document.getElementById("btn-notificacao").addEventListener("click", function() {
+    window.location.href = "/pendencias";
+});
+
+// Função para atualizar a quantidade de pendências
+function atualizarNotificacoes(qtd) {
+    const badge = document.getElementById("badge-notificacao");
+    if (qtd > 0) {
+        badge.innerText = qtd;
+        badge.style.display = "flex";
+    } else {
+        badge.style.display = "none";
+    }
+}
+
+// Exemplo: buscar quantidade de pendências abertas via fetch
+function buscarPendenciasAbertas() {
+    fetch("/pendencias/abertas") // rota que retorna JSON com { qtd: 5 }
+        .then(res => res.json())
+        .then(data => {
+            atualizarNotificacoes(data.qtd);
+        })
+        .catch(err => console.error("Erro ao buscar pendências:", err));
+}
+
+// Atualiza ao carregar a página
+buscarPendenciasAbertas();
+
+// Se quiser atualizar a cada X segundos, por exemplo a cada 30s:
+setInterval(buscarPendenciasAbertas, 30000);
+
+// ===== HAMBURGER / SIDEBAR MOBILE =====
+(function () {
+  const toggle  = document.getElementById("sidebarToggle");
+  const sidebar = document.querySelector(".sidebar");
+  const overlay = document.getElementById("sidebarOverlay");
+
+  if (!toggle || !sidebar || !overlay) return;
+
+  // ✅ Fecha todos os submenus abertos
+  function fecharSubmenus() {
+    document.querySelectorAll(".submenu").forEach(sub => {
+      sub.classList.remove("open");
+    });
+  }
+
+  function abrirSidebar() {
+    sidebar.classList.add("sidebar-open");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function fecharSidebar() {
+    sidebar.classList.remove("sidebar-open");
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+    fecharSubmenus(); // ✅ fecha submenus ao fechar sidebar
+  }
+
+  toggle.addEventListener("click", function (e) {
+    e.stopPropagation();
+    sidebar.classList.contains("sidebar-open")
+      ? fecharSidebar()
+      : abrirSidebar();
+  });
+
+  // Fecha clicando no overlay
+  overlay.addEventListener("click", fecharSidebar);
+
+  // Fecha ao clicar em link direto (não submenu-btn)
+  sidebar.querySelectorAll("a[href]").forEach(link => {
+    link.addEventListener("click", fecharSidebar);
+  });
+
+})();
+
+
+
+</script>

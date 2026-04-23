@@ -1,0 +1,149 @@
+  <!-- Modal Adicionar -->
+    <div class="modal fade" id="modalAdicionarPessoa" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Adicionar Pessoa</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formAdicionar">
+              <div class="mb-3">
+                <label class="form-label">Nome:</label>
+                <input type="text" id="txtAddNome" class="form-control mb-2" placeholder="Insira um Nome">
+
+                <label class="form-label">Funcional:</label>
+                <input type="text" id="txtAddFuncional" class="form-control mb-2" placeholder="Insira um Funcional">
+
+                 <label class="form-label">CPF:</label>
+                <input type="text" id="txtAddCPF" class="form-control mb-2" placeholder="Insira um CPF">
+
+                <label class="form-label">Vínculo:</label>
+                <select id="txtAddVinculo" class="form-select mb-2">
+                </select>
+               <label class="form-label">Departamento:</label>
+              <div>
+                <input type="search" id="searchDepartamento" class="form-control" placeholder="Buscar departamento..." />
+
+              </div>
+                  <div class="tabela-fixa">
+                  <!-- Tabela de departamentos -->
+                <table class="table table-bordered table-sm" id="tabelaDepartamentos">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Secretaria</th>
+                        <th>Nome</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Linhas serão inseridas via JavaScript -->
+                  </tbody>
+                </table>
+                  </div>
+
+                  <!-- Tabela de departamentos -->
+               <label class="form-label">Empresa:</label>
+              <div>
+                <input type="search" id="searchEmpresa" class="form-control" placeholder="Buscar empresa..." />
+
+              </div>
+                  <div class="tabela-fixa">
+                 <!-- Tabela de empresas -->
+                <table class="table table-bordered table-sm" id="tabelaEmpresas">
+                  <thead>
+                    <tr>
+                      <th></th>
+                        <th>Nome</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Linhas serão inseridas via JavaScript -->
+                  </tbody>
+                </table>
+                  </div>
+
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" onclick="salvarNovoPessoa()">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEditar" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Modelo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form id="formEditar">
+          <input type="hidden" id="editIdPessoa">
+
+          <div class="mb-3">
+
+            <label class="form-label">Nome:</label>
+            <input type="text" id="editNome" class="form-control mb-2">
+
+            <label class="form-label">Funcional:</label>
+            <input type="text" id="editFuncional" class="form-control mb-2">
+
+            <label class="form-label">CPF:</label>
+            <input type="text" id="editCPF" class="form-control mb-2">
+
+            <label class="form-label">Vínculo:</label>
+            <select id="editVinculo" class="form-select mb-2"></select>
+
+            <label class="form-label">Departamento:</label>
+            <input type="search" id="searchDepartamentoEditar" class="form-control mb-2" placeholder="Buscar departamento...">
+    <div class="tabela-fixa">
+            <!-- Tabela de departamentos -->
+            <table class="table table-bordered table-sm" id="tabelaDepartamentosEditar">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Secretaria</th>
+                  <th>Nome</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+    </div>
+
+            <label class="form-label">Empresa:</label>
+            <input type="search" id="searchEmpresaEditar" class="form-control mb-2" placeholder="Buscar empresa...">
+        <div class="tabela-fixa">
+            <!-- Tabela de empresas -->
+            <table class="table table-bordered table-sm" id="tabelaEmpresasEditar">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Nome</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </div>
+
+          </div>
+        </form>
+
+      </div> <!-- FIM modal-body -->
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoPessoa()">Salvar alterações</button>
+      </div>
+
+    </div>
+  </div>
+</div>

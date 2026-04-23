@@ -1,0 +1,116 @@
+<!-- Modal Adicionar -->
+<div class="modal fade" id="modalAdicionarTronco" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Tronco</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formAdicionarTronco">
+          <div class="mb-3">
+            <input type="hidden" id="editIdTronco">
+
+            <label class="form-label">Numero Chave</label>
+            <input type="text" id="txtAddNumerochave" class="form-control mb-2" placeholder="Insira um Numero Chave">
+
+            <label class="form-label">Ramal Inicial</label>
+            <input type="text" id="txtAddRamalincial" class="form-control mb-2" placeholder="Insira um Ramal Inicial">
+
+            <label class="form-label">Ramal Final</label>
+            <input type="text" id="txtAddRamalfinal" class="form-control mb-2" placeholder="Insira um Ramal Final">
+
+
+            <label class="form-label">Operadora</label>
+            <!-- Campo de pesquisa -->
+            <input type="text" id="searchOperadora" class="form-control mb-2" placeholder="Pesquisar...">
+    <div class="tabela-fixa">
+            <!-- Tabela de secretarias -->
+            <table class="table table-bordered table-sm" id="tabelaOperadora">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Operadora</th>
+                  <th>Contrato</th>
+                  <th>Processo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Linhas serão inseridas via JavaScript -->
+              </tbody>
+            </table>
+    </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarNovoTronco()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEditarTronco" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Tronco</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formEditar">
+          <div class="mb-3">
+
+            <label class="form-label">Número Chave</label>
+            <input type="text" id="txtEditNumerochave" class="form-control mb-2" placeholder="Insira o Número Chave">
+
+            <label class="form-label">Ramal Inicial</label>
+            <input type="text" id="txtEditRamalinicial" class="form-control mb-2" placeholder="Insira o Ramal Inicial">
+
+            <label class="form-label">Ramal Final</label>
+            <input type="text" id="txtEditRamalfinal" class="form-control mb-2" placeholder="Insira o Ramal Final">
+
+            <label class="form-label">Operadora</label>
+
+            <!-- Campo de pesquisa -->
+            <input type="text" id="searchOperadoraEdit" class="form-control mb-2" placeholder="Pesquisar...">
+<div class="tabela-fixa">
+            <!-- Tabela de operadoras -->
+            <table class="table table-bordered table-sm" id="tabelaOperadoraEdit">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Operadora</th>
+                  <th>Contrato</th>
+                  <th>Processo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Linhas preenchidas via JavaScript -->
+              </tbody>
+            </table>
+</div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoTronco()">Salvar Alterações</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  {% include "modais/modaisglobal.html" %}
+  <script src="{{ url_for('static', filename='js/modais/modaistronco.js') }}"></script>

@@ -1,0 +1,120 @@
+  <!-- Modal Adicionar -->
+    <div class="modal fade" id="modalAdicionarRamal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Adicionar Ramal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formAdicionarRamal">
+              <div class="mb-3">
+                <label class="form-label">Ramal:</label>
+                <input type="text" id="txtAddRamal" class="form-control mb-2" placeholder="Insira um Ramal">
+
+               <label class="form-label">Tronco:</label>
+              <div>
+                <input type="search" id="searchTronco" class="form-control" placeholder="Buscar Tronco..." />
+
+              </div>
+                  <div class="tabela-fixa">
+                  <!-- Tabela de tronco -->
+            <table class="table table-bordered table-sm" id="tabelaTronco">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Número Chave</th>
+                    <th>Ramal Inicial</th>
+                    <th>Ramal Final</th>
+                    <th>Operadora</th>
+                    </tr>
+                    </thead>
+                <tbody></tbody>
+            </table>
+                  </div>
+
+
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" type="checkbox" id="addGravado">
+                    <label class="form-check-label" for="addGravado">
+                    Gravação habilitada
+                    </label>
+                </div>
+
+
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" onclick="salvarNovoRamal()">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Modal Editar -->
+<!-- Modal Editar -->
+<div class="modal fade" id="modalEditarRamal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Editar Ramal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="formEditarRamal">
+          <input type="hidden" id="editIdRamal">
+
+          <div class="mb-3">
+            <label class="form-label">Ramal:</label>
+            <input type="text" id="txtEditRamal" class="form-control mb-2" placeholder="Insira um Ramal">
+
+            <label class="form-label">Tronco:</label>
+            <div>
+              <input type="search"
+                     id="searchTroncoEditar"
+                     class="form-control mb-2"
+                     placeholder="Buscar Tronco..." />
+            </div>
+        <div class="tabela-fixa">
+            <!-- Tabela de tronco -->
+            <table class="table table-bordered table-sm" id="tabelaTroncoEditar">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Número Chave</th>
+                  <th>Ramal Inicial</th>
+                  <th>Ramal Final</th>
+                  <th>Operadora</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </div>
+            <!-- Botão abaixo da tabela -->
+
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" id="editGravado">
+              <label class="form-check-label" for="editGravado">
+                Gravação habilitada
+              </label>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarEdicaoRamal()">Salvar alterações</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    {% include "modais/modaisglobal.html" %}
+ <script src="{{ url_for('static', filename='js/modais/modaisramal.js') }}"></script>

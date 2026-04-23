@@ -1,0 +1,202 @@
+<div class="modal fade" id="modalVisualizarRamalNumerogrupo" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ramais do Número de Grupo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+<div class="modal-body">
+  <!-- Label Número do Grupo -->
+      <div class="alert alert-info py-2 mb-3">
+        <strong>Número do Grupo:</strong>
+        <span id="labelNumeroGrupo"></span>
+      </div>
+
+  <form id="formAdicionar">
+    <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+            <button type="button"
+              class="btn btn-outline-primary w-100 mb-3"
+              onclick="abrirModalAdicionarRamalNumeroGrupo()">
+            Vincular Ramal
+             </button>
+            </div>
+            <label class="form-label">Ramal(is) vinculados ao número de grupo:</label>
+            <!-- Tabela -->
+            <div class="tabela-fixa">
+              <table class="table table-bordered table-sm" id="tabelaRamalNumeroGrupo">
+                <thead>
+                  <tr>
+                    <th>Ramal</th>
+                  <th>Ordem</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- JS -->
+                </tbody>
+              </table>
+            </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal Adicionar Ramal ao Número de Grupo -->
+<div class="modal fade" id="modalAdicionarRamalNumeroGrupo" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Ramal ao Número Virtual</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+      <div class="alert alert-info py-2 mb-3">
+        <strong>Número Virtual:</strong>
+        <span id="labelNumeroGrupoAdicionar"></span>
+      </div>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <button type="button"
+          class="btn btn-outline-primary w-100 mb-3"
+          onclick="abrirAdicionarRamal()">
+        Adicionar Ramal
+         </button>
+    </div>
+                    <label class="form-label">Selecione o(s) ramal(is) que deseja víncular ao número virtual:</label>
+      <!-- 🔍 SEARCH -->
+      <input type="text"
+             id="searchRamalAdicionar"
+             class="form-control form-control-sm mb-2"
+             placeholder="Pesquisar ramal...">
+      <div class="tabela-fixa">
+        <table class="table table-bordered table-sm" id="tabelaAdicionarRamalNumeroGrupo">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Ramal</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarRamalNumeroGrupo()">
+          Vincular
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalVisualizarRamal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Números Virtual do Ramal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Ramal:</strong>
+          <span id="labelRamal"></span>
+        </div>
+
+        <button type="button"
+                class="btn btn-outline-primary w-100 mb-3"
+                onclick="abrirModalAdicionarNumeroGrupoRamal()">
+          Vincular Número Virtual
+        </button>
+        <label class="form-label">Número(s) virtual(is) vínculado(s) ao ramal:</label>
+        <table class="table table-bordered table-sm" id="tabelaNumeroGrupoRamal">
+          <thead>
+            <tr>
+              <th>Número Virtual</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Sair</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAdicionarNumeroGrupoRamal" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar Número Virtual ao Ramal</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="alert alert-info py-2 mb-3">
+          <strong>Ramal:</strong>
+          <span id="labelRamalAdicionar"></span>
+        </div>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <button type="button"
+          class="btn btn-outline-primary w-100 mb-3"
+          onclick="abrirAdicionarNumeroGrupo()">
+        Adicionar Número Virtual
+         </button>
+    </div>
+          <label class="form-label">Selecione o(s) número(s) virtual(is) que deseja víncular ao ramal:</label>
+        <input type="text"
+               id="searchNumeroGrupoAdicionar"
+               class="form-control form-control-sm mb-2"
+               placeholder="Pesquisar número de grupo...">
+        <div class="tabela-fixa">
+            <table class="table table-bordered table-sm" id="tabelaAdicionarNumeroGrupoRamal">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Número Virtual</th>
+                  <th class="text-center">Ações</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" onclick="salvarNumeroGrupoRamal()">
+          Vincular
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <script src="{{ url_for('static', filename='js/modais/modaisramalnumerogrupo.js') }}"></script>
