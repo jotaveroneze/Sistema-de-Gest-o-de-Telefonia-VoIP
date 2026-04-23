@@ -1,0 +1,8 @@
+Flask
+Flask-Login
+Flask-Bcrypt
+Flask-SQLAlchemy
+SQLAlchemy
+pymysql
+pandas
+reportlab
